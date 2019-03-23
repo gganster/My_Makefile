@@ -41,18 +41,9 @@ INCL_PATH	=	$(ROOT_PATH)$(INCL_NAME)
 TESTS_PATH	=	$(ROOT_PATH)$(TESTS_NAME)
 SRC_PATH	=	$(ROOT_PATH)$(SRC_NAME)
 
-SRC	=	event.c	\
-		create_house.c \
-		controls.c	\
-		animation.c	\
-		camera_gestion.c \
-		display_and_obj.c
-
-SRC_LIB	=	my \
-			g
-
-LIB_PATHS	=	lib \
-				lib_graphic
+SRC			=	
+SRC_LIB		=	
+LIB_PATHS	=
 
 SRCS	=	$(SRC:%=$(SRC_PATH)/%) $(SRC_PATH)/main.c
 OBJ	=	$(SRCS:.c=.o)
@@ -64,10 +55,7 @@ CFLAGS	=	-Wall \
 			-Werror \
 			-I $(INCL_PATH) \
 			$(LIB_PATHS_FLAG) \
-			$(LIBRARIES) \
-			-lcsfml-graphics \
-			-lcsfml-window \
-			-lcsfml-system
+			$(LIBRARIES)
 
 DEBUG_FLAGS	=	-g3 -gdwarf-4
 MAKE_RULE	=	all
@@ -98,7 +86,7 @@ clean_libs: $(LIB_PATHS)
 	@for MAKE_PATH in $(LIB_PATHS) ; do \
 		make $(CLEAN_RULE) -C $$MAKE_PATH -s ; \
 	done
-	@make $(CLEAN_RULE) -C $(TESTS_PATH) -s SRC="$(SRC)" COLOR_THEME="$(RED_C)"
+	## @make $(CLEAN_RULE) -C $(TESTS_PATH) -s SRC="$(SRC)" COLOR_THEME="$(RED_C)"
 
 clean: clean_libs
 	@$(RM) $(OBJ)
