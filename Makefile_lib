@@ -26,13 +26,13 @@ LIGHT_MAGEN	=	"\e[95m"
 LIGHT_CYAN	=	"\e[96m"
 LINE_RETURN	=	$(ECHO) ""
 
-NAME	=	my
-COLOR_THEME	=	$(YELLO_C)
-DEBUG_THEME =	$(CYAN_C)
-SRC_PATH	=	./
+NAME	        =	my
+COLOR_THEME		=	$(YELLO_C)
+DEBUG_THEME     =	$(CYAN_C)
+SRC_PATH		=	./
 INCLUDE_PATH	=	../include
 
-SRC	=	
+SRC		=	
 
 CFLAGS	=	-Wall \
 			-Wextra \
@@ -50,7 +50,7 @@ message:
 	@$(LINE_RETURN)
 	@$(ECHO) $(BOLD_T)$(COLOR_THEME)" _     _ _                          " $(DEFAULT)
 	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |   (_) |__  _ __ __ _ _ __ _   _ " $(DEFAULT)
-	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |   | | '_ \| '__/ _\`| '__| | | |" $(DEFAULT)
+	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |   | | '_ \| '__/ _\` | '__| | | |" $(DEFAULT)
 	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"| |___| | |_) | | | (_| | |  | |_| |" $(DEFAULT)
 	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"|_____|_|_.__/|_|  \__,_|_|   \__, |" $(DEFAULT)
 	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"                              |___/ " $(DEFAULT)
@@ -73,7 +73,7 @@ fclean:	clean
 		$(RED_C)$(BOLD_T)"DELETED: "$(DEFAULT) \
 		$(LIGHT_RED)"Binary lib$(NAME).a"$(DEFAULT)
 
-re:		re
+re:	fclean all
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: COLOR_THEME = $(DEBUG_THEME)
