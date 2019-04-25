@@ -30,8 +30,7 @@ LIGHT_CYAN	=	"\e[96m"
 LINE_RETURN	=	$(ECHO) ""
 
 NAME	=	executable
-COLOR_THEME	=	$(BLUE_C)
-TESTS_COLOR_THEME	=	$(RED_C)
+COLOR_THEME	=	$(YELLO_C)
 
 ROOT_PATH	=	./
 SRC_NAME	=	src
@@ -43,7 +42,7 @@ SRC_PATH	=	$(ROOT_PATH)$(SRC_NAME)
 
 SRC			=	
 SRC_LIB		=	
-LIB_PATHS	=
+LIB_PATHS	=	
 
 SRCS	=	$(SRC:%=$(SRC_PATH)/%) $(SRC_PATH)/main.c
 OBJ	=	$(SRCS:.c=.o)
@@ -86,7 +85,6 @@ clean_libs: $(LIB_PATHS)
 	@for MAKE_PATH in $(LIB_PATHS) ; do \
 		make $(CLEAN_RULE) -C $$MAKE_PATH -s ; \
 	done
-	## @make $(CLEAN_RULE) -C $(TESTS_PATH) -s SRC="$(SRC)" COLOR_THEME="$(RED_C)"
 
 clean: clean_libs
 	@$(RM) $(OBJ)
@@ -113,21 +111,9 @@ debug: MAKE_RULE = debug
 debug: re
 	@$(ECHO) $(BOLD_T)$(COLOR_THEME)"⚠ DEBUG MODE ACTIVATED ⚠\n"$(DEFAULT)
 
-tests_run: build_libs
-	@make -C $(TESTS_PATH) -s \
-		SRC="$(SRC)" \
-		COLOR_THEME="$(TESTS_COLOR_THEME)" \
-		LIB_PATHS="$(LIB_PATHS)" \
-		LIBRARIES="$(LIBRARIES)"
-	@$(ECHO) $(TESTS_COLOR_THEME)""
-	@gcovr --exclude "tests/" --sort-uncovered --branches
-	@$(ECHO) $(BOLD_T)""
-	@gcovr --exclude "tests/" --sort-uncovered --print-summary
-	@$(ECHO) $(DEFAULT)
-
 %.o: %.c
 	@$(CC) -c $(CFLAGS) -o $@ $< && \
-		$(ECHO) $(DIM_T) "cc $(CFLAGS) -c "$<$(COLOR_THEME)" -o "$@ $(DEFAULT) || \
+		$(ECHO) $(DIM_T) "cc $(CFLAGS) -c "$<$(COLOR_THEME)$(BOLD_T)" -o "$@ $(DEFAULT) || \
 		$(ECHO) "\n"$(MAGEN_C) $(UNDLN_T)$(BOLD_T)"cc $(CFLAGS) -c "$<" -o "$@$(DEFAULT)"\n"
 
-.PHONY: all $(NAME) build_libs message clean_libs clean fclean re debug tests_run
+.PHONY: all $(NAME) build_libs message clean_libs clean fclean re debug

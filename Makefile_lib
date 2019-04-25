@@ -73,7 +73,7 @@ fclean:	clean
 		$(RED_C)$(BOLD_T)"DELETED: "$(DEFAULT) \
 		$(LIGHT_RED)"Binary lib$(NAME).a"$(DEFAULT)
 
-re:		fclean all
+re:		re
 
 debug: CFLAGS += $(DEBUG_FLAGS)
 debug: COLOR_THEME = $(DEBUG_THEME)
